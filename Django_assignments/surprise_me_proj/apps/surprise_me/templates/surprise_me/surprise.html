@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Surprise Me!</title>
+	{% load staticfiles %}
+</head>
+<body>
+	<h1>Surprises:</h1>
+	{% for key in request.session.context %}
+		{{ key }}<br>
+	{% endfor %}
+</body>
+</html>

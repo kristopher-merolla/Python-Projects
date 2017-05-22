@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ turtle }}</title>
+	{% load staticfiles %}
+</head>
+<body>
+	{% if color == 'blue' %}
+		<img src="{% static 'dissapearing_ninjas/imgs/leonardo.jpg' %}" alt="leonardo"/>
+	{% elif color == 'red' %}
+		<img src="{% static 'dissapearing_ninjas/imgs/raphael.jpg' %}" alt="raphael"/>
+	{% elif color == 'purple' %}
+		<img src="{% static 'dissapearing_ninjas/imgs/donatello.jpg' %}" alt="donatello"/>
+	{% elif color == 'orange' %}
+		<img src="{% static 'dissapearing_ninjas/imgs/michelangelo.jpg' %}" alt="michelangelo"/>
+	{% else %}
+		<img src="{% static 'dissapearing_ninjas/imgs/notapril.jpg' %}" alt="notapril"/>
+	{% endif %}
+</body>
+</html>

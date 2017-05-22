@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Routing</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'landscapes/css/landscapes_styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<h1>Your random image of the day:</h1>
+	{% if id <= 10 %}
+		<img src="{% static 'landscapes/imgs/snowy_landscape.jpg' %}" alt="snowy_landscape" />
+	{% elif id <= 20 %}
+		<img src="{% static 'landscapes/imgs/desert_landscape.jpg' %}" alt="desert_landscape" />
+	{% elif id <= 30 %}
+		<img src="{% static 'landscapes/imgs/forest_landscape.jpg' %}" alt="forest_landscape" />
+	{% elif id <= 40 %}
+		<img src="{% static 'landscapes/imgs/vineyard_landscape.jpg' %}" alt="vineyard_landscape" />
+	{% elif id <= 50 %}
+		<img src="{% static 'landscapes/imgs/tropical_landscape.jpg' %}" alt="tropical_landscape" />
+	{% endif %}
+</body>
+</html>

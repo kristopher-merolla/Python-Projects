@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Wall</title>
+	{% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'the_wall/css/the_wall_styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<div id="big_wrapper">
+		<div id="top_bar">
+			<h2 id="header">CodingDojo Wall</h2>
+			<div id="right_header">
+				<h4 id="active_user">{{ request.session.active_user }} | </h4>
+				<a href="/">log off</a>
+			</div>
+		</div>
+		<div id="the_wall">
+			<h3>Post a message</h3>
+			<form action='/post' method='POST'>
+				{% csrf_token %}
+				<input type="text" name="post" id="post">
+				<input type="hidden" name="new_post" value="new_post"> <!-- Hidden value to now if we're making a new post -->
+				<input type="submit" value="Post a message">
+			</form>
+			<br>
+			{% for message in messages %}
+				<div class="post">
+					<h4>{{ message.user_id.first_name }} - {{ message.created_at }}</h4>
+					<p>{{ message.message }}</p>
+					{% for comment in comments %}
+						<div id="comment_box">
+						{% for comment in comments %}
+							<h4>{{ comment.user_id.first_name }} - {{ comment.created_at }}</h4>
+							<p>{{ comment.comment }}</p>
+						{% endfor %}
+						</div>
+					{% endfor %}
+					<form action='/post' method='POST'>
+						{% csrf_token %}
+						<input type="hidden" name="new_post" value="new_comment"> <!-- Hidden value to now if we're making a new comment -->
+						<input type="hidden" name="post_index" value="{{ message.id }}"> <!-- Hidden value to now if we're making a new comment -->
+						<input type="text" name="comment_post" id="comment_post">
+						<input type="submit" value="Post a comment" id="comment_button">
+					</form>
+				</div>
+				<br>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+#big_wrapper {
+	margin:0px auto;
+	width: auto;
+	height: auto;
+}
+
+#top_bar {
+	border-bottom: 2px solid black;
+	width: 900px;
+	height: auto;
+}
+
+#header {
+	display: inline-block;
+	padding-right: 430px;
+}
+
+#active_user {
+	display: inline-block;
+}
+
+#the_wall {
+	margin-left: 40px;
+	margin-right: 40px;
+	width: 810px;
+}
+
+#right_header {
+	display: inline-block;
+}
+
+.post {
+	margin-left: 20px;
+}
+
+#comment_button {
+	margin-left: 685px;
+}
+
+#comment_box {
+	margin-left: 20px;
+}
+
+#comment_post {
+	margin-left: 658px;
+}

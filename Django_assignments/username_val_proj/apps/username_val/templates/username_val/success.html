@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Username Validator</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'username_val/css/username_val_styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<div id="big_wrapper">
+		{{message|safe}}
+		<br>
+		<h3 style="text-decoration-style: underline;">Usernames entered:</h3>
+		<div id="usernames_box">
+			{% for username in usernames %}
+				<p>{{username.username}} {{username.created_at}}</p>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

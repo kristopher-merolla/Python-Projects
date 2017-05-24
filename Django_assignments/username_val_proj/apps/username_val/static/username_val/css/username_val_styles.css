@@ -1,0 +1,13 @@
+#big_wrapper {
+	margin: 0px auto;
+	text-align: center;
+	width: 700px;
+	height: 500px;
+	background-color: gray;
+	padding: 100px;
+}
+
+#button {
+	float:right;
+	box-shadow: 1px 1px 1px black;
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Username Validator</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'username_val/css/username_val_styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<div id="big_wrapper">
+		{{message|safe}}
+		<form action='/validate' method='POST'>
+			{% csrf_token %}
+			<label for="username">Username:</label><input type="text" name="username" id="username"><br>
+			<input type="submit" value="Submit" id="button">
+		</form>
+	</div>
+</body>
+</html>

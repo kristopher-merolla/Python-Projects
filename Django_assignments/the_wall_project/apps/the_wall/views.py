@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 
 import md5 # imports the md5 module to generate a hash for password securing
 
 import os, binascii # used for random generation // salt = binascii.b2a_hex(os.urandom(15))
 
 from .models import User, Message, Comment
-
-from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -37,6 +35,9 @@ def active_user(request):
 def login(request):
 	email = request.POST['email']
 	password = request.POST['password'] # password needs to be hashed here, use md5 and a salt
+
+	User.userManager.login(email, password) # after login submitted, pass to the manager for the User class for validations
+	return HttpResponse(User.userManager.login(email, password)) # return the HttpResponse from the UserManager()
 
 	# check if the user exists and if not, set the user to None
 	try:
@@ -144,7 +145,7 @@ def new_login(request):
 
 
 def new_post(request):
-	if (session.get('active_user') == None): # if no active user, redirect to the login page
+	if (requets.session.get('active_user') == None): # if no active user, redirect to the login page
 		return redirect('/')
 	# if we are dealing with a new post (NOT a new comment)
 	if (request.POST['new_post'] == 'new_post'):
@@ -156,7 +157,7 @@ def new_post(request):
 		else:
 			# grab the user_id for the active user from the users table
 			grab_user_id = "SELECT id FROM users WHERE email = :email"
-			grab_data = {'email': session['active_user']}
+			grab_data = {'email': request.session['active_user']}
 			user_id = mysql.query_db(grab_user_id, grab_data)[0]['id']
 			# add the new post into the posts table
 			new_post = "INSERT INTO posts (user_id, message, created_at, updated_at) VALUES (:user_id, :message, NOW(), NOW())"

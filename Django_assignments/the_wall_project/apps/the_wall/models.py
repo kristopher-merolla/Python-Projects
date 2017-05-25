@@ -6,7 +6,7 @@ from django.db import models
 # Create your models here.
 class UserManager(models.Manager):
 	def login(self, email, password):
-
+		
 		print ("Running a login function!")
 		print ("If successful login occurs, maybe return {'theuser':user} where user is a user object?")
 		print ("If unsuccessful, maybe return { 'errors':['Login unsuccessful'] }")

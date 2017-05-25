@@ -10,7 +10,7 @@
         <h1>Welcome!  Login or register below</h1>
         <br>
         <div id="login_box">
-            <form action='/login' method='POST'>
+            <form action="{% url 'index'%}" method='POST'>
                 {% csrf_token %}
                 <label for="email">Email:<input type="text" name="email" id="email"></label><br>
                 <label for="password">Password:<input type="password" name="password" id="password"></label><br>
@@ -19,7 +19,7 @@
             {{message | safe}} <!-- if an error message exists after a register attempt, it will be displayed here -->
         <br>
         </div>
-        <form action='/register' method='GET'>
+        <form action="{% url 'register'%}" method='GET'>
             <input type="submit" value="Register">
         </form>
     </div>

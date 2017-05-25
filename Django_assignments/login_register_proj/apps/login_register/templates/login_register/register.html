@@ -10,7 +10,7 @@
 		<h1>Please enter the below information to register.</h1>
 		<br>
 		<div id="register_box">
-			<form action='/register_user' method='POST'>
+			<form action="{% url 'register_user'%}" method='POST'>
 				{% csrf_token %}
 				<label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label><br>
 				<label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label><br>

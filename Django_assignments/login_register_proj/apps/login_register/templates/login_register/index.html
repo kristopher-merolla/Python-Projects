@@ -10,7 +10,7 @@
         <h1>Welcome!  Login or register below</h1>
         <br>
         <div id="login_box">
-            <form action="{% url 'index'%}" method='POST'>
+            <form action="{% url 'login'%}" method='POST'>
                 {% csrf_token %}
                 <label for="email">Email:<input type="text" name="email" id="email"></label><br>
                 <label for="password">Password:<input type="password" name="password" id="password"></label><br>

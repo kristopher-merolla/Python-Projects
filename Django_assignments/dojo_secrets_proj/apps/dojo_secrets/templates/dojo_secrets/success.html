@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dojo Secrets</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'dojo_secrets/css/dojo_secrets_styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<h1>Welcome, {{request.session.active_user_name}}</h1>
+	<form action="{% url 'post'%}" method='POST'>
+		{% csrf_token %}
+		<textarea cols="50" rows="5" name="message" id="message" placeholder="Your secret here..."></textarea><br>
+		<input type="submit" value="Post"> <a href="{% url 'popular'%}">Most Popular Secrets</a>
+	</form>
+	<br><br>
+	<h1>Recent Secrets...</h1>
+	{% for secret in recent_secrets %}
+		<p>{{ secret.message }} ({{secret.created_at|timesince}} ago) {{secret.likers.all.count}}
+			{% if secret.author == currentuser %}
+				<a href="delete/{{secret.id}}/sec">Delete</a></p>
+			{% elif currentuser in secret.likers.all %}
+				<strong>You liked this already!</strong>
+			{% else %}
+				<a href="like/{{secret.id}}/sec">Like</a></p>
+			{% endif %}
+	{% endfor %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Most Popular Secrets</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'dojo_secrets/css/dojo_secrets_styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<h1>Most Popular Secrets...</h1> <a href="{% url 'main'%}">Back</a>
+	<br><br>
+	{% for secret in recent_secrets %}
+		<p>{{ secret.message }} ({{secret.created_at}}) {{secret.likers.all.count}}
+			{% if secret.author == currentuser %}
+				<a href="delete/{{secret.id}}/pop">Delete</a></p>
+			{% elif currentuser in secret.likers.all %}
+				<strong>You liked this already!</strong>
+			{% else %}
+				<a href="like/{{secret.id}}/pop">Like</a></p>
+			{% endif %}
+	{% endfor %}
+</body>
+</html>

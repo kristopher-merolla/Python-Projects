@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'dojo_secrets/css/dojo_secrets_styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <div id="big_wrapper">
+        <h1>Welcome!  Login or register below</h1>
+        <br>
+        <div id="login_box">
+            <form action="{% url 'login'%}" method='POST'>
+                {% csrf_token %}
+                <label for="email">Email:<input type="text" name="email" id="email"></label><br>
+                <label for="password">Password:<input type="password" name="password" id="password"></label><br>
+                <input type="submit" value="Login">
+            </form>
+            {{message | safe}} <!-- if an error message exists after a register attempt, it will be displayed here -->
+        <br>
+        </div>
+        <form action="{% url 'register'%}" method='GET'>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
